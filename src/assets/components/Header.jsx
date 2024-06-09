@@ -4,7 +4,7 @@ import logoImg from '../quiz-logo.png';
 const Header = () => {
   return (
     <header>
-      <img src={logoImg}/>
+      <img src={logoImg} alt='the logo'/>
       <h1>Quiz</h1>
 
     </header>
