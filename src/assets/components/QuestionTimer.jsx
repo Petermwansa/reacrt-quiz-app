@@ -7,6 +7,7 @@ const QuestionTimer = ({ timeout, onTimeout }) => {
         console.log('set timeout');
         const timer = setTimeout(onTimeout, timeout)
 
+        // this clean up func will be run by react before it runs this comp again 
         return () => {
             clearTimeout(timer)
         }
@@ -19,7 +20,7 @@ const QuestionTimer = ({ timeout, onTimeout }) => {
             setremainingTime((prevRemainingTime) => prevRemainingTime - 100)
         }, 100);
 
-        // this clean up func will be run by react beofre it rund this comp again 
+        // this clean up func will be run by react before it runs this comp again 
         return () => {
             clearInterval(interval)
         }

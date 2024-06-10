@@ -24,13 +24,15 @@ const Quiz = () => {
             if (selectedAnswer === QUESTIONS[activeQuestionsIndex].answers[0]) {
                 setAnswerState('correct');
             } else {
-                setAnswerState('correct');
+                setAnswerState('wrong');
             }
 
+            // we reset the answe state back to an empty string.
             setTimeout(() => {
                 setAnswerState('')
             }, 2000)
         }, 1000)
+        // we add activeQuestionsIndex to  the dependencies array because the vlaue should be recreated so that we do not use an outdated value
     }, [activeQuestionsIndex]);
 
     const handleSkipAnswer = useCallback(() => handleSelectAnswer(null), [handleSelectAnswer]);
@@ -52,7 +54,7 @@ const Quiz = () => {
     <div id='quiz'>
         <div id='question'>
             <QuestionTimer 
-                // the key prop is used here to rerender this comp as it it is not being rerendered since nothing is changing here 
+                // the key prop(it can be added to any comp/element) is used here to re-render this comp as it it is not being rerendered since nothing is changing here 
                 key={activeQuestionsIndex}
                 timeout={10000} 
                 onTimeout={handleSkipAnswer}
@@ -70,10 +72,10 @@ const Quiz = () => {
                         cssClass = answerState;
                     }
 
-
-                    return <li key={answer} className='answer'>
+                    return (<li key={answer} className='answer'>
                         <button onClick={() => handleSelectAnswer(answer)} className={cssClass}>{answer}</button>
                     </li>
+                    )
                 })}
             </ul>
         </div>
